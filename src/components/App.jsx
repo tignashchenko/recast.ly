@@ -7,17 +7,29 @@ class App extends React.Component {
       videos: window.exampleVideoData,
       currentVideo: window.exampleVideoData[0]      
     };
+    this.updateVideoPlayerWhenClicked = this.updateVideoPlayerWhenClicked.bind(this);
+  }
+
+  // componentDidMount() {
+  //   this.setState({videos: window.exampleVideoData, currentVideo: window.exampleVideoData[4]});
+    
+  // }
+
+  updateVideoPlayerWhenClicked(videoTitle) {
+    this.setState({currentVideo: videoTitle});
   }
 
   render() {
     return (
-      <div>
-        <Nav />
-        <div className="col-md-7">
-         <VideoPlayer video={this.state.currentVideo}/>
-        </div>
-        <div className="col-md-5">
-         <VideoList videos={this.state.videos}/>
+        <div>
+          <Nav />
+          <div className="col-md-7">
+           <VideoPlayer video={this.state.currentVideo} />
+          </div>
+          <div className="col-md-5">
+           <VideoList videos={this.state.videos}
+           onUpdatePlayerWhenClicked={this.updateVideoPlayerWhenClicked}  
+          />
         </div>
       </div>
     );
